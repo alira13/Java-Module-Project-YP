@@ -1,6 +1,16 @@
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        try {
+            var calculator = new Calculator();
+            calculator.getPeopleNumber();
+            calculator.addProduct();
+            calculator.printInputData();
+            calculator.calculate();
+            calculator.printResult();
+        }
+        catch (Exception ex){
+        }
     }
 }
