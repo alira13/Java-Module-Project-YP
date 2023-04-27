@@ -1,18 +1,16 @@
-import android.app.VoiceInteractor;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Scanner;
 
 public class Calculator {
-    private int PeopleNum;
-    private ArrayList<Product> Products;
-    private double TotalPrice;
-    private double PricePerOne;
-    private double Coins;
+    private int peopleNum;
+    private ArrayList<Product> products;
+    private double totalPrice;
+    private double pricePerOne;
+    private double coins;
     public Calculator(){
-        Products = new ArrayList<>();
+        products = new ArrayList<>();
     }
 
     public void getPeopleNumber(){
@@ -21,9 +19,9 @@ public class Calculator {
         do{
             System.out.println("Введите количество человек, которые будут делить счет:");
             peopleNum = scanner.nextLine();
-            PeopleNum = Validator.validatePeopleNumber(peopleNum);
+            this.peopleNum = Validator.validatePeopleNumber(peopleNum);
         }
-        while (PeopleNum==-1);
+        while (this.peopleNum ==-1);
     }
 
     public void addProduct(){
@@ -31,8 +29,8 @@ public class Calculator {
         while(!cancelInput.equalsIgnoreCase("завершить")){
             System.out.println("Добавьте продукт в калькулятор");
             var product = new Product().create();
-            Products.add(product);
-            System.out.println("Продукт "+ product.show()+" успешно добавлен");
+            products.add(product);
+            System.out.println("Продукт "+ product+" успешно добавлен");
             System.out.println("Хотите добавить еще? Если нет, то напечатайте \"Завершить\"");
             Scanner scanner = new Scanner(System.in);
             cancelInput = scanner.nextLine();
@@ -40,25 +38,25 @@ public class Calculator {
     }
 
     public void calculate(){
-        for (var product:Products) {
-            TotalPrice = TotalPrice+product.Price;
+        for (var product: products) {
+            totalPrice = totalPrice +product.price;
         }
         var count=100;
-        PricePerOne = (Math.ceil(TotalPrice/PeopleNum*count)/count);
-        Coins = Double.parseDouble(String.format(Locale.ENGLISH, "%.2f", PricePerOne*PeopleNum - TotalPrice));
+        pricePerOne = (Math.ceil(totalPrice / peopleNum *count)/count);
+        coins = Double.parseDouble(String.format(Locale.ENGLISH, "%.2f", pricePerOne * peopleNum - totalPrice));
     }
 
     public void printInputData(){
-        System.out.println("Количество человек: "+PeopleNum);
+        System.out.println("Количество человек: "+ peopleNum);
         System.out.println("Добавленные товары:");
-        for (var product: Products) {
-            System.out.println(product.show());
+        for (var product: products) {
+            System.out.println(product);
         }
     }
 
     public void printResult(){
-        System.out.println("Сумма для оплаты на человека " + PricePerOne+ " "+ defineRubleLabel(PricePerOne));
-        System.out.println("Сумму поделили поровну, официант принес сдачу " + Coins+ " " + defineRubleLabel(Coins));
+        System.out.println("Сумма для оплаты на человека " + pricePerOne + " "+ defineRubleLabel(pricePerOne));
+        System.out.println("Сумму поделили поровну, официант принес сдачу " + coins + " " + defineRubleLabel(coins));
     }
 
     public String defineRubleLabel(double rubles){

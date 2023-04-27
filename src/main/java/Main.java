@@ -11,6 +11,7 @@ public class Main {
             calculator.printResult();
         }
         catch (Exception ex){
+            System.out.println("ОШИБКА! В процессе работы приложения что-то пошло не так");
         }
     }
 }

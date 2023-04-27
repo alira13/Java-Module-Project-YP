@@ -2,8 +2,8 @@ import java.util.Locale;
 import java.util.Scanner;
 
 public class Product {
-    public String Name;
-    public double Price;
+    public String name;
+    public double price;
 
     public Product create(){
         addName();
@@ -14,22 +14,21 @@ public class Product {
     public void addName(){
         System.out.println("Введите название продукта:");
         Scanner in = new Scanner(System.in);
-        Name = in.nextLine();
+        name = in.nextLine();
     }
 
     public void addPrice(){
         Scanner in = new Scanner(System.in);
         String priceAsString;
-        double price;
         do{
             System.out.println("Введите цену продукта:");
             priceAsString = in.nextLine();
-            Price = Validator.validateProductPrice(priceAsString);
+            this.price = Validator.validateProductPrice(priceAsString);
         }
-        while(Price==-1);
+        while(this.price ==-1);
     }
 
-    public String show() {
-        return String.format(Locale.ENGLISH, "%s %.2f  руб.", Name, Price);
+    public String toString() {
+        return String.format(Locale.ENGLISH, "%s %.2f  руб.", name, price);
     }
 }
