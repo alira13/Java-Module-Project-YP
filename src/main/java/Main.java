@@ -9,8 +9,7 @@ public class Main {
             calculator.printInputData();
             calculator.calculate();
             calculator.printResult();
-        }
-        catch (Exception ex){
+        } catch (Exception ex) {
             System.out.println("ОШИБКА! В процессе работы приложения что-то пошло не так");
         }
     }

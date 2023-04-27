@@ -4,28 +4,28 @@ import java.util.Scanner;
 public class Product {
     public String name;
     public double price;
+    private Scanner scanner;
 
-    public Product create(){
+    public Product create() {
+        scanner = new Scanner(System.in);
         addName();
         addPrice();
         return this;
     }
 
-    public void addName(){
+    public void addName() {
         System.out.println("Введите название продукта:");
-        Scanner in = new Scanner(System.in);
-        name = in.nextLine();
+        name = scanner.nextLine();
     }
 
-    public void addPrice(){
-        Scanner in = new Scanner(System.in);
+    public void addPrice() {
         String priceAsString;
-        do{
+        do {
             System.out.println("Введите цену продукта:");
-            priceAsString = in.nextLine();
+            priceAsString = scanner.nextLine();
             this.price = Validator.validateProductPrice(priceAsString);
         }
-        while(this.price ==-1);
+        while (this.price == -1);
     }
 
     public String toString() {
